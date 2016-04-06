@@ -249,6 +249,7 @@ follow the substitution rules of StrSubstitutor_ from the Apache Commons Lang li
 
     mySetting: ${DW_MY_SETTING}
     defaultSetting: ${DW_DEFAULT_SETTING:-default value}
+    switchSetting: ${DW_SWITCH_SETTING foo=value-if-foo bar=value-if-bar}
 
 In general ``SubstitutingSourceProvider`` isn't restricted to substitute environment variables but can be used to replace
 variables in the configuration source with arbitrary values by passing a custom ``StrSubstitutor`` implementation.

@@ -31,4 +31,14 @@ public class EnvironmentVariableLookupTest {
         EnvironmentVariableLookup lookup = new EnvironmentVariableLookup(true);
         lookup.lookup("nope");
     }
+
+    @Test
+    public void lookupSwitchesOnEnvironmentVariables() {
+        EnvironmentVariableLookup lookup = new EnvironmentVariableLookup(false);
+
+        assertThat(lookup.lookup("TEST test_value=passing")).isEqualTo("passing");
+        assertThat(lookup.lookup("TEST other_value=failing test_value=passing")).isEqualTo("passing");
+        assertThat(lookup.lookup("TEST test_value=passing other_value=failing")).isEqualTo("passing");
+        assertThat(lookup.lookup("TEST other_value=failing")).isNull();
+    }
 }
